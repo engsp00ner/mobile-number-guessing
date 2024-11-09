@@ -18,10 +18,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "test.flibber"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    
+    "plugins": [
+      "expo-font"
+    ]
+    
   }
 }
