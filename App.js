@@ -3,7 +3,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { useState, useEffect } from "react";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
-
+import { StatusBar } from "expo-status-bar";
 import StartGameScreen from "./Screens/StartGameScreen";
 import GameScreen from "./Screens/GamScreen";
 import Colors from "./Constants/colors";
@@ -56,25 +56,23 @@ export default function App() {
     return null; // Return null until fonts are loaded to avoid rendering errors
   }
 
-  // Handler to update guess rounds
-  function updateGuessRounds(rounds) {
-    setGuessRounds(rounds);
-  }
-
   return (
-    <LinearGradient
-      colors={[Colors.Primary700, Colors.Accent500]}
-      style={styles.rootScreen}
-    >
-      <ImageBackground
-        source={require("./assets/Images/background.png")}
-        resizeMode="cover"
+    <>
+      <StatusBar style="light" />
+      <LinearGradient
+        colors={[Colors.Primary700, Colors.Accent500]}
         style={styles.rootScreen}
-        imageStyle={styles.backgroundImage}
       >
-        <SafeAreaView style={styles.rootScreen}>{screen}</SafeAreaView>
-      </ImageBackground>
-    </LinearGradient>
+        <ImageBackground
+          source={require("./assets/Images/background.png")}
+          resizeMode="cover"
+          style={styles.rootScreen}
+          imageStyle={styles.backgroundImage}
+        >
+          <SafeAreaView style={styles.rootScreen}>{screen}</SafeAreaView>
+        </ImageBackground>
+      </LinearGradient>
+    </>
   );
 }
 

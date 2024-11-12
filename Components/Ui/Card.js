@@ -1,26 +1,35 @@
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, useWindowDimensions } from "react-native";
+import { useEffect } from "react";
 import Colors from "../../Constants/colors";
 
 function Card({ children }) {
-  return <View style={styles.Card}>{children}</View>;
+  const { width, height } = useWindowDimensions();
+
+  // Log the window size each time it changes
+  useEffect(() => {
+    console.log("Window width:", width);
+    console.log("Window height:", height);
+  }, [width, height]);
+
+  const deviceStyles = {
+    marginTop: width < 380 ? 0 : 40,
+  };
+
+  return <View style={[styles.Card, deviceStyles]}>{children}</View>;
 }
+
 export default Card;
 
 const styles = StyleSheet.create({
   Card: {
-    //the following flex box properties are for positioning
-    justifyContent: "center", //to set the items in the box area
-    alignItems: "center", // this will align iteam across the opposite access
-    //if i set the flex box to colum allign items will affect the raw and viseverse
-    marginTop: 40,
+    justifyContent: "center",
+    alignItems: "center",
     marginHorizontal: 24,
     padding: 16,
     backgroundColor: Colors.Primary800,
     borderRadius: 8,
-    //this for setting the box shadow in the android
-    elevation: 4,
-    //this is for setting the shadow in iOS
-    shadowColor: "black",
+    elevation: 4, // Android shadow
+    shadowColor: "black", // iOS shadow
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 6,
     shadowOpacity: 0.25,
